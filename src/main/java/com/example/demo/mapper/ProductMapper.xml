@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.Product">
+    <id column="ProductId" jdbcType="BIGINT" property="productid" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="Brand" jdbcType="VARCHAR" property="brand" />
+    <result column="CategoryId" jdbcType="INTEGER" property="categoryid" />
+    <result column="Price" jdbcType="DECIMAL" property="price" />
+    <result column="Status" jdbcType="TINYINT" property="status" />
+    <result column="ShopId" jdbcType="BIGINT" property="shopid" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <resultMap id="ProductResultMap" type="com.example.demo.model.Product">
+    <id column="ProductId" jdbcType="BIGINT" property="productid" />
+    <result column="ShopId" jdbcType="VARCHAR" property="shopId" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="Brand" jdbcType="VARCHAR" property="brand" />
+    <result column="Price" jdbcType="DECIMAL" property="price" />
+    <result column="ShopName" jdbcType="VARCHAR" property="shopName" />
+    <result column="Count" jdbcType="INTEGER" property="count" />
+
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.model.Product">
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ProductId, Name, Brand, CategoryId, Price, Status, ShopId, CreateTime, UpdateTime
+  </sql>
+  <sql id="Blob_Column_List">
+    Description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from product
+    where ProductId = #{productid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from product
+    where ProductId = #{productid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.Product">
+    insert into product (ProductId, Name, Brand, 
+      CategoryId, Price, Status, 
+      ShopId, CreateTime, UpdateTime, 
+      Description)
+    values (#{productid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR},
+      #{categoryid,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{status,jdbcType=TINYINT}, 
+      #{shopid,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP},
+      #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.Product">
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productid != null">
+        ProductId,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="brand != null">
+        Brand,
+      </if>
+      <if test="categoryid != null">
+        CategoryId,
+      </if>
+      <if test="price != null">
+        Price,
+      </if>
+      <if test="status != null">
+        Status,
+      </if>
+      <if test="shopid != null">
+        ShopId,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productid != null">
+        #{productid,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryid != null">
+        #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="shopid != null">
+        #{shopid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.Product">
+    update product
+    <set>
+      <if test="name != null">
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        Brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryid != null">
+        CategoryId = #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        Price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        Status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="shopid != null">
+        ShopId = #{shopid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ProductId = #{productid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.model.Product">
+    update product
+    set Name = #{name,jdbcType=VARCHAR},
+      Brand = #{brand,jdbcType=VARCHAR},
+      CategoryId = #{categoryid,jdbcType=INTEGER},
+      Price = #{price,jdbcType=DECIMAL},
+      Status = #{status,jdbcType=TINYINT},
+      ShopId = #{shopid,jdbcType=BIGINT},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      Description = #{description,jdbcType=LONGVARCHAR}
+    where ProductId = #{productid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.Product">
+    update product
+    set Name = #{name,jdbcType=VARCHAR},
+      Brand = #{brand,jdbcType=VARCHAR},
+      CategoryId = #{categoryid,jdbcType=INTEGER},
+      Price = #{price,jdbcType=DECIMAL},
+      Status = #{status,jdbcType=TINYINT},
+      ShopId = #{shopid,jdbcType=BIGINT},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where ProductId = #{productid,jdbcType=BIGINT}
+  </update>
+  <select id="getProductId" resultMap="BaseResultMap">
+    SELECT ProductId
+    FROM product
+    WHERE ShopId = #{shopId} AND CreateTime = #{createTime}
+  </select>
+  <select id="selectAllProductByShopIdStatus" resultMap="BaseResultMap">
+    SELECT ProductId,Name,Price
+    FROM product
+    WHERE ShopId = #{shopId} AND Status=#{status}
+    LIMIT #{offset}, #{pageSize}
+  </select>
+  <update id="updateDetails">
+   UPDATE product
+  SET description = #{description}
+  WHERE ProductId = #{productId};
+  </update>
+  <select id="selectPriceByProductId" resultMap="BaseResultMap">
+    SELECT Price
+    FROM product
+    WHERE ProductId = #{productId}
+  </select>
+  <select id="selectProductByCategoryId" resultMap="ProductResultMap">
+    SELECT p1.ProductId,p1.Name,p1.Brand,p1.CategoryId,p1.Price,ps.ShopId,ps.ShopName
+    FROM product p1
+    LEFT JOIN product_shop ps
+    ON p1.ShopId = ps.ShopId
+    WHERE CategoryId = #{categoryId} AND p1.Status = 0
+    LIMIT #{offset}, #{pageSize}
+  </select>
+  <select id="selectByName" resultMap="ProductResultMap">
+    SELECT DISTINCT pps.ProductId, pps.Name, pps.Brand,pps.CategoryId, pps.Price, pps.ShopId,pps.ShopName
+    FROM (
+           SELECT p.ProductId, p.Name, p.Brand,p.CategoryId, p.Price , ps.ShopId, ps.ShopName
+           FROM product p
+                  LEFT JOIN product_shop ps
+                            ON p.ShopId = ps.ShopId
+           WHERE p.Name LIKE '%${name}%'
+           UNION ALL
+           SELECT p.ProductId, p.Name, p.Brand,p.CategoryId, p.Price , ps.ShopId, ps.ShopName
+           FROM product p
+                  LEFT JOIN product_shop ps
+                            ON p.ShopId = ps.ShopId
+           WHERE p.Brand LIKE '%${name}%'
+         ) as pps
+    LIMIT #{offset}, #{pageSize}
+
+  </select>
+  <select id="RecommendProduct" resultMap="ProductResultMap">
+    SELECT p.ProductId,p.Name,p.Price,sum(o.Count) AS Count
+    FROM product p
+           LEFT JOIN `order` o ON p.ProductId = o.ProductId
+    WHERE p.`Name` LIKE '%${keyWords}%' AND p.Status=0
+    GROUP BY p.ProductId
+    ORDER BY sum(o.Count) DESC
+    LIMIT 2;
+  </select>
+
+</mapper>

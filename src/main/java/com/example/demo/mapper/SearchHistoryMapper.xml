@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SearchHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.SearchHistory">
+    <id column="searchId" jdbcType="BIGINT" property="searchid" />
+    <result column="userId" jdbcType="BIGINT" property="userid" />
+    <result column="keyWords" jdbcType="VARCHAR" property="keywords" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    searchId, userId, keyWords, createTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from search_history
+    where searchId = #{searchid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from search_history
+    where searchId = #{searchid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.SearchHistory">
+    insert into search_history (searchId, userId, keyWords, 
+      createTime)
+    values (#{searchid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{keywords,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.SearchHistory">
+    insert into search_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="searchid != null">
+        searchId,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="keywords != null">
+        keyWords,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="searchid != null">
+        #{searchid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.SearchHistory">
+    update search_history
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="keywords != null">
+        keyWords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where searchId = #{searchid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.SearchHistory">
+    update search_history
+    set userId = #{userid,jdbcType=BIGINT},
+      keyWords = #{keywords,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP}
+    where searchId = #{searchid,jdbcType=BIGINT}
+  </update>
+  <select id="selectByUserid" resultMap="BaseResultMap">
+    SELECT keyWords
+    FROM search_history
+    WHERE userId = #{userId}
+    order by createTime DESC
+    LIMIT 1
+  </select>
+</mapper>

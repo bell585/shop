@@ -1,0 +1,91 @@
+server:
+  port: 8092
+  servlet:
+    context-path: /Shopping
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shopping?useAffectedRows=true
+    username: root
+    password: 123456
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: h73na87
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+      enabled: true
+    resources:
+      static-locations: classpath:/static/
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 500ms
+          multiplier: 1
+          max-attempts: 3
+          stateless: false
+        prefetch: 1
+        acknowledge-mode: auto
+
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+  mvc:
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /static/**
+    view:
+      prefix: /templates/
+  mail:
+    host: smtp.163.com
+    port: 465
+    username: ys5087cns@163.com
+    password: SQLECTZGBJAPRZRB
+    default-encoding: UTF-8
+    properties:
+      mail.smtp.auth: true
+      mail:
+        smtp:
+          ssl:
+            enable: true
+      mail.smtp.socketFactory.port: 465
+      mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+      mail.smtp.socketFactory.fallback: false
+  jpa: #事务管理功能
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    database-platform: org.hibernate.dialect.MySQLDialect
+    transaction:
+      manager-id: default
+      default-timeout: 30
+    open-in-view: false
+
+  thymeleaf:
+    enabled: true
+    prefix: classpath:/templates/
+    suffix: .html
+
+
+
+
+
+
+
+
+
+#logging:
+ #  file:
+  #    name: D:/testjava/demo/src/main/resources/log/spring_log.log #日志保存路径，开发期间可以不启用
+
+

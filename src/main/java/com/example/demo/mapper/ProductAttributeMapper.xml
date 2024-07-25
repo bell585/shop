@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ProductAttributeMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.ProductAttribute">
+    <id column="AttributeId" jdbcType="BIGINT" property="attributeid" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="CategoryId" jdbcType="INTEGER" property="categoryid" />
+    <result column="Option" jdbcType="VARCHAR" property="option" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    AttributeId, Name, CategoryId, Option
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_attribute
+    where AttributeId = #{attributeid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from product_attribute
+    where AttributeId = #{attributeid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.ProductAttribute">
+    insert into product_attribute (AttributeId, Name, CategoryId, 
+      Option)
+    values (#{attributeid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{categoryid,jdbcType=INTEGER},
+      #{option,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.ProductAttribute">
+    insert into product_attribute
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="attributeid != null">
+        AttributeId,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="categoryid != null">
+        CategoryId,
+      </if>
+      <if test="option != null">
+        Option,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="attributeid != null">
+        #{attributeid,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryid != null">
+        #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="option != null">
+        #{option,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.ProductAttribute">
+    update product_attribute
+    <set>
+      <if test="name != null">
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryid != null">
+        CategoryId = #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="option != null">
+        Option = #{option,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where AttributeId = #{attributeid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.ProductAttribute">
+    update product_attribute
+    set Name = #{name,jdbcType=VARCHAR},
+      CategoryId = #{categoryid,jdbcType=INTEGER},
+      Option = #{option,jdbcType=VARCHAR}
+    where AttributeId = #{attributeid,jdbcType=BIGINT}
+  </update>
+  <select id="selectIdByNameCategoryId" resultMap="BaseResultMap">
+    SELECT AttributeId
+    FROM product_attribute
+    WHERE CategoryId = #{categoryId} AND Name = #{name}
+  </select>
+  <select id="selectIdNameByCategoryId" resultMap="BaseResultMap">
+    SELECT AttributeId, Name
+    FROM product_attribute
+    WHERE CategoryId = #{categoryId}
+  </select>
+</mapper>

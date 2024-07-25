@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.Order">
+    <id column="OrderId" jdbcType="BIGINT" property="orderid" />
+    <result column="UserId" jdbcType="BIGINT" property="userid" />
+    <result column="ProductId" jdbcType="BIGINT" property="productid" />
+    <result column="TotalPrice" jdbcType="DECIMAL" property="totalprice" />
+    <result column="ActualPrice" jdbcType="DECIMAL" property="actualprice" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="PriceId" jdbcType="BIGINT" property="priceid" />
+    <result column="Address" jdbcType="VARCHAR" property="address" />
+    <result column="Count" jdbcType="INTEGER" property="count" />
+    <result column="DiscountedPrice" jdbcType="DECIMAL" property="discountedprice" />
+    <result column="Status" jdbcType="TINYINT" property="status" />
+    <result column="PayType" jdbcType="VARCHAR" property="paytype" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    OrderId, UserId, ProductId, TotalPrice, ActualPrice, CreateTime, PriceId, Address, 
+    Count, DiscountedPrice, Status, PayType
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `order`
+    where OrderId = #{orderid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `order`
+    where OrderId = #{orderid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.Order">
+    insert into `order` (OrderId, UserId, ProductId,
+      TotalPrice, ActualPrice, CreateTime, 
+      PriceId, Address, Count, 
+      DiscountedPrice, Status, PayType
+      )
+    values (#{orderid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{productid,jdbcType=BIGINT},
+      #{totalprice,jdbcType=DECIMAL}, #{actualprice,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{priceid,jdbcType=BIGINT}, #{address,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER},
+      #{discountedprice,jdbcType=DECIMAL}, #{status,jdbcType=TINYINT}, #{paytype,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.Order">
+    insert into `order`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        OrderId,
+      </if>
+      <if test="userid != null">
+        UserId,
+      </if>
+      <if test="productid != null">
+        ProductId,
+      </if>
+      <if test="totalprice != null">
+        TotalPrice,
+      </if>
+      <if test="actualprice != null">
+        ActualPrice,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="priceid != null">
+        PriceId,
+      </if>
+      <if test="address != null">
+        Address,
+      </if>
+      <if test="count != null">
+        Count,
+      </if>
+      <if test="discountedprice != null">
+        DiscountedPrice,
+      </if>
+      <if test="status != null">
+        Status,
+      </if>
+      <if test="paytype != null">
+        PayType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        #{orderid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="productid != null">
+        #{productid,jdbcType=BIGINT},
+      </if>
+      <if test="totalprice != null">
+        #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="actualprice != null">
+        #{actualprice,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priceid != null">
+        #{priceid,jdbcType=BIGINT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="discountedprice != null">
+        #{discountedprice,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="paytype != null">
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.Order">
+    update `order`
+    <set>
+      <if test="userid != null">
+        UserId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="productid != null">
+        ProductId = #{productid,jdbcType=BIGINT},
+      </if>
+      <if test="totalprice != null">
+        TotalPrice = #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="actualprice != null">
+        ActualPrice = #{actualprice,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priceid != null">
+        PriceId = #{priceid,jdbcType=BIGINT},
+      </if>
+      <if test="address != null">
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        Count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="discountedprice != null">
+        DiscountedPrice = #{discountedprice,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        Status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="paytype != null">
+        PayType = #{paytype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OrderId = #{orderid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.Order">
+    update `order`
+    set UserId = #{userid,jdbcType=BIGINT},
+      ProductId = #{productid,jdbcType=BIGINT},
+      TotalPrice = #{totalprice,jdbcType=DECIMAL},
+      ActualPrice = #{actualprice,jdbcType=DECIMAL},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      PriceId = #{priceid,jdbcType=BIGINT},
+      Address = #{address,jdbcType=VARCHAR},
+      Count = #{count,jdbcType=INTEGER},
+      DiscountedPrice = #{discountedprice,jdbcType=DECIMAL},
+      Status = #{status,jdbcType=TINYINT},
+      PayType = #{paytype,jdbcType=VARCHAR}
+    where OrderId = #{orderid,jdbcType=BIGINT}
+  </update>
+  <select id="selectStatusByOrderId" resultMap="BaseResultMap">
+    SELECT status
+    FROM `order`
+    WHERE OrderId=#{orderId}
+  </select>
+</mapper>

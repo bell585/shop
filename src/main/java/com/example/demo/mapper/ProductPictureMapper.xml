@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ProductPictureMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.ProductPicture">
+    <id column="PictureId" jdbcType="BIGINT" property="pictureid" />
+    <result column="ProductId" jdbcType="BIGINT" property="productid" />
+    <result column="Picture" jdbcType="VARCHAR" property="picture" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PictureId, ProductId, Picture
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_picture
+    where PictureId = #{pictureid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from product_picture
+    where PictureId = #{pictureid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.ProductPicture">
+    insert into product_picture (PictureId, ProductId, Picture
+      )
+    values (#{pictureid,jdbcType=BIGINT}, #{productid,jdbcType=BIGINT}, #{picture,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.ProductPicture">
+    insert into product_picture
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pictureid != null">
+        PictureId,
+      </if>
+      <if test="productid != null">
+        ProductId,
+      </if>
+      <if test="picture != null">
+        Picture,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pictureid != null">
+        #{pictureid,jdbcType=BIGINT},
+      </if>
+      <if test="productid != null">
+        #{productid,jdbcType=BIGINT},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.ProductPicture">
+    update product_picture
+    <set>
+      <if test="productid != null">
+        ProductId = #{productid,jdbcType=BIGINT},
+      </if>
+      <if test="picture != null">
+        Picture = #{picture,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PictureId = #{pictureid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.ProductPicture">
+    update product_picture
+    set ProductId = #{productid,jdbcType=BIGINT},
+      Picture = #{picture,jdbcType=VARCHAR}
+    where PictureId = #{pictureid,jdbcType=BIGINT}
+  </update>
+  <select id="selectAllByProductId" resultMap="BaseResultMap">
+    SELECT *
+    FROM product_picture
+    WHERE ProductId = #{productId}
+  </select><select id="selectPictureByPictureId" resultMap="BaseResultMap">
+    SELECT Picture
+    FROM product_picture
+    WHERE PictureId = #{pictureId}
+  </select>
+</mapper>

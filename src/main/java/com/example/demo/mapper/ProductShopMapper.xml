@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ProductShopMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.ProductShop">
+    <id column="ShopId" jdbcType="BIGINT" property="shopid" />
+    <result column="ShopName" jdbcType="VARCHAR" property="shopname" />
+    <result column="UserId" jdbcType="BIGINT" property="userid" />
+    <result column="ProductDescribeScore" jdbcType="DOUBLE" property="productdescribescore" />
+    <result column="SellerServiceScore" jdbcType="DOUBLE" property="sellerservicescore" />
+    <result column="LogisticsScore" jdbcType="DOUBLE" property="logisticsscore" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="Signature" jdbcType="VARCHAR" property="signature" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ShopId, ShopName, UserId, ProductDescribeScore, SellerServiceScore, LogisticsScore, 
+    CreateTime, Signature
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_shop
+    where ShopId = #{shopid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from product_shop
+    where ShopId = #{shopid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.ProductShop">
+    insert into product_shop (ShopId, ShopName, UserId, 
+      ProductDescribeScore, SellerServiceScore, 
+      LogisticsScore, CreateTime, Signature
+      )
+    values (#{shopid,jdbcType=BIGINT}, #{shopname,jdbcType=VARCHAR}, #{userid,jdbcType=BIGINT},
+      #{productdescribescore,jdbcType=DOUBLE}, #{sellerservicescore,jdbcType=DOUBLE}, 
+      #{logisticsscore,jdbcType=DOUBLE}, #{createtime,jdbcType=TIMESTAMP}, #{signature,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.ProductShop">
+    insert into product_shop
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shopid != null">
+        ShopId,
+      </if>
+      <if test="shopname != null">
+        ShopName,
+      </if>
+      <if test="userid != null">
+        UserId,
+      </if>
+      <if test="productdescribescore != null">
+        ProductDescribeScore,
+      </if>
+      <if test="sellerservicescore != null">
+        SellerServiceScore,
+      </if>
+      <if test="logisticsscore != null">
+        LogisticsScore,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="signature != null">
+        Signature,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shopid != null">
+        #{shopid,jdbcType=BIGINT},
+      </if>
+      <if test="shopname != null">
+        #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="productdescribescore != null">
+        #{productdescribescore,jdbcType=DOUBLE},
+      </if>
+      <if test="sellerservicescore != null">
+        #{sellerservicescore,jdbcType=DOUBLE},
+      </if>
+      <if test="logisticsscore != null">
+        #{logisticsscore,jdbcType=DOUBLE},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signature != null">
+        #{signature,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.ProductShop">
+    update product_shop
+    <set>
+      <if test="shopname != null">
+        ShopName = #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        UserId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="productdescribescore != null">
+        ProductDescribeScore = #{productdescribescore,jdbcType=DOUBLE},
+      </if>
+      <if test="sellerservicescore != null">
+        SellerServiceScore = #{sellerservicescore,jdbcType=DOUBLE},
+      </if>
+      <if test="logisticsscore != null">
+        LogisticsScore = #{logisticsscore,jdbcType=DOUBLE},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signature != null">
+        Signature = #{signature,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ShopId = #{shopid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.ProductShop">
+    update product_shop
+    set ShopName = #{shopname,jdbcType=VARCHAR},
+      UserId = #{userid,jdbcType=BIGINT},
+      ProductDescribeScore = #{productdescribescore,jdbcType=DOUBLE},
+      SellerServiceScore = #{sellerservicescore,jdbcType=DOUBLE},
+      LogisticsScore = #{logisticsscore,jdbcType=DOUBLE},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      Signature = #{signature,jdbcType=VARCHAR}
+    where ShopId = #{shopid,jdbcType=BIGINT}
+  </update>
+</mapper>

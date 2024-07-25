@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ProductPriceMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.ProductPrice">
+    <id column="PriceId" jdbcType="BIGINT" property="priceid" />
+    <result column="ProductId" jdbcType="BIGINT" property="productid" />
+    <result column="AttributeValueIds" jdbcType="VARCHAR" property="attributevalueids" />
+    <result column="Price" jdbcType="DECIMAL" property="price" />
+    <result column="Picture" jdbcType="VARCHAR" property="picture" />
+    <result column="Stock" jdbcType="INTEGER" property="stock" />
+    <result column="Sort" jdbcType="TINYINT" property="sort" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PriceId, ProductId, AttributeValueIds, Price, Picture, Stock, Sort
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_price
+    where PriceId = #{priceid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from product_price
+    where PriceId = #{priceid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.ProductPrice">
+    insert into product_price (PriceId, ProductId, AttributeValueIds, 
+      Price, Picture, Stock, 
+      Sort)
+    values (#{priceid,jdbcType=BIGINT}, #{productid,jdbcType=BIGINT}, #{attributevalueids,jdbcType=VARCHAR},
+      #{price,jdbcType=DECIMAL}, #{picture,jdbcType=VARCHAR}, #{stock,jdbcType=INTEGER}, 
+      #{sort,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.ProductPrice">
+    insert into product_price
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="priceid != null">
+        PriceId,
+      </if>
+      <if test="productid != null">
+        ProductId,
+      </if>
+      <if test="attributevalueids != null">
+        AttributeValueIds,
+      </if>
+      <if test="price != null">
+        Price,
+      </if>
+      <if test="picture != null">
+        Picture,
+      </if>
+      <if test="stock != null">
+        Stock,
+      </if>
+      <if test="sort != null">
+        Sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="priceid != null">
+        #{priceid,jdbcType=BIGINT},
+      </if>
+      <if test="productid != null">
+        #{productid,jdbcType=BIGINT},
+      </if>
+      <if test="attributevalueids != null">
+        #{attributevalueids,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.ProductPrice">
+    update product_price
+    <set>
+      <if test="productid != null">
+        ProductId = #{productid,jdbcType=BIGINT},
+      </if>
+      <if test="attributevalueids != null">
+        AttributeValueIds = #{attributevalueids,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        Price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="picture != null">
+        Picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null">
+        Stock = #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        Sort = #{sort,jdbcType=TINYINT},
+      </if>
+    </set>
+    where PriceId = #{priceid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.ProductPrice">
+    update product_price
+    set ProductId = #{productid,jdbcType=BIGINT},
+      AttributeValueIds = #{attributevalueids,jdbcType=VARCHAR},
+      Price = #{price,jdbcType=DECIMAL},
+      Picture = #{picture,jdbcType=VARCHAR},
+      Stock = #{stock,jdbcType=INTEGER},
+      Sort = #{sort,jdbcType=TINYINT}
+    where PriceId = #{priceid,jdbcType=BIGINT}
+  </update>
+  <select id="selectPictureByPriceId" resultMap="BaseResultMap">
+    SELECT ProductId,Picture
+    FROM product_price
+    WHERE PriceId = #{priceId}
+  </select>
+  <select id="selectAllByProductId" resultMap="BaseResultMap">
+    SELECT *
+    FROM product_price
+    WHERE ProductId = #{productId}
+  </select>
+  <update id="updateSortByProductId">
+    UPDATE product_price
+    set Sort = 0
+    WHERE ProductId = #{productId} AND Sort = 1
+  </update>
+  <select id="selectPriceByPriceId" resultMap="BaseResultMap">
+    SELECT Price
+    FROM product_price
+    WHERE PriceId = #{priceId}
+  </select>
+  <update id="updateStock">
+    UPDATE product_price
+    set Stock = Stock-#{stock1}
+    WHERE PriceId = #{priceId} AND Stock >= #{stock1}
+  </update>
+  <select id="selectStockByPriceId" resultMap="BaseResultMap">
+    SELECT Stock
+    FROM product_price
+    WHERE PriceId = #{priceId}
+  </select>
+  <select id="select" resultMap="BaseResultMap">
+    SELECT *
+    FROM product_price
+    WHERE PriceId = #{priceId}
+  </select>
+
+</mapper>

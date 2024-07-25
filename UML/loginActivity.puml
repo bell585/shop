@@ -1,0 +1,31 @@
+@startuml
+skinparam backgroundColor #EEEBDC
+'skinparam handwritten true
+skinparam sequence {
+ArrowColor DeepSkyBlue
+ActorBorderColor DeepSkyBlue
+LifeLineBorderColor blue
+LifeLineBackgroundColor #A9DCDF
+ParticipantBorderColor DeepSkyBlue
+ParticipantBackgroundColor DodgerBlue
+ParticipantFontName Impact
+ParticipantFontSize 17
+ParticipantFontColor #A9DCDF
+ActorBackgroundColor aqua
+ActorFontColor DeepSkyBlue
+ActorFontSize 17
+ActorFontName Aapex
+}
+actor         用户        as people
+participant   群或服务号  as group
+participant   接入层     as group_1
+participant   Test配置中心     as test
+participant   测试能力或平台     as platform
+people -> group: 执行测试任务启动命令
+group  -> group_1: 机器人接收请求
+test  <- group_1: 解析数据及查询任务配置
+group_1  <-- test: 任务配置信息
+group_1  -> platform: 调用测试服务执行测试
+group_1  <-- platform: 处理结果消息
+group_1  --> group: 自定义通知格式渲染
+@enduml

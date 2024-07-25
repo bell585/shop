@@ -1,0 +1,42 @@
+2024-01-25T22:12:16.024+08:00  INFO 17552 --- [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication using Java 17.0.9 with PID 17552 (D:\testjava\demo\target\classes started by lenovo in D:\testjava\demo)
+2024-01-25T22:12:16.026+08:00  INFO 17552 --- [restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2024-01-25T22:12:16.099+08:00  INFO 17552 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-01-25T22:12:16.101+08:00  INFO 17552 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-01-25T22:12:17.248+08:00  INFO 17552 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-01-25T22:12:17.250+08:00  INFO 17552 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-01-25T22:12:17.273+08:00  INFO 17552 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 0 JDBC repository interfaces.
+2024-01-25T22:12:17.290+08:00  INFO 17552 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-01-25T22:12:17.291+08:00  INFO 17552 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-25T22:12:17.302+08:00  INFO 17552 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2024-01-25T22:12:17.319+08:00  INFO 17552 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-01-25T22:12:17.320+08:00  INFO 17552 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-01-25T22:12:17.337+08:00  INFO 17552 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2024-01-25T22:12:18.288+08:00  INFO 17552 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8092 (http)
+2024-01-25T22:12:18.290+08:00  INFO 17552 --- [restartedMain] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.34] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.5]
+2024-01-25T22:12:18.290+08:00  INFO 17552 --- [restartedMain] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.34] using APR version [1.7.0].
+2024-01-25T22:12:18.294+08:00  INFO 17552 --- [restartedMain] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1o  3 May 2022]
+2024-01-25T22:12:18.305+08:00  INFO 17552 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-25T22:12:18.306+08:00  INFO 17552 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2024-01-25T22:12:18.383+08:00  INFO 17552 --- [restartedMain] o.a.c.c.C.[.[localhost].[/Shopping]      : Initializing Spring embedded WebApplicationContext
+2024-01-25T22:12:18.384+08:00  INFO 17552 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2283 ms
+2024-01-25T22:12:18.943+08:00  INFO 17552 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-25T22:12:19.322+08:00  INFO 17552 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5c9fed14
+2024-01-25T22:12:19.324+08:00  INFO 17552 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-25T22:12:19.371+08:00  INFO 17552 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-25T22:12:19.437+08:00  INFO 17552 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
+2024-01-25T22:12:19.441+08:00  INFO 17552 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-01-25T22:12:19.667+08:00  INFO 17552 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2024-01-25T22:12:19.847+08:00  INFO 17552 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-25T22:12:20.029+08:00  INFO 17552 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2024-01-25T22:12:20.331+08:00  INFO 17552 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-01-25T22:12:20.338+08:00  INFO 17552 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-25T22:12:21.315+08:00  INFO 17552 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4289ac3a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@225ea70c, org.springframework.security.web.context.SecurityContextHolderFilter@5922acb9, org.springframework.security.web.header.HeaderWriterFilter@41a7087c, org.springframework.security.web.authentication.logout.LogoutFilter@60ef7f4c, com.example.demo.util.JwtAuthenticationTokenFilter@5b59c2fb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3ab637e8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@700df17, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@55e0f02e, org.springframework.security.web.access.ExceptionTranslationFilter@f9af47, org.springframework.security.web.access.intercept.AuthorizationFilter@35e92e3]
+2024-01-25T22:12:21.889+08:00  INFO 17552 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-01-25T22:12:21.938+08:00  INFO 17552 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8092 (http) with context path '/Shopping'
+2024-01-25T22:12:21.950+08:00  INFO 17552 --- [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 6.542 seconds (process running for 7.498)
+2024-01-25T22:12:48.041+08:00  INFO 17552 --- [http-nio-8092-exec-1] o.a.c.c.C.[.[localhost].[/Shopping]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-01-25T22:12:48.041+08:00  INFO 17552 --- [http-nio-8092-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-01-25T22:12:48.043+08:00  INFO 17552 --- [http-nio-8092-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-01-25T22:14:23.731+08:00  INFO 17552 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-25T22:14:23.741+08:00  INFO 17552 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-01-25T22:14:23.766+08:00  INFO 17552 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

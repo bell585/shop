@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ProductCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.ProductCategory">
+    <id column="CategoryId" jdbcType="INTEGER" property="categoryid" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="ParentId" jdbcType="INTEGER" property="parentid" />
+    <result column="Sort" jdbcType="SMALLINT" property="sort" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CategoryId, Name, ParentId, Sort, CreateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_category
+    where CategoryId = #{categoryid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_category
+    where CategoryId = #{categoryid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.ProductCategory">
+    insert into product_category (CategoryId, Name, ParentId, 
+      Sort, CreateTime)
+    values (#{categoryid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, 
+      #{sort,jdbcType=SMALLINT}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.ProductCategory">
+    insert into product_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="categoryid != null">
+        CategoryId,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="parentid != null">
+        ParentId,
+      </if>
+      <if test="sort != null">
+        Sort,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="categoryid != null">
+        #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.ProductCategory">
+    update product_category
+    <set>
+      <if test="name != null">
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        ParentId = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        Sort = #{sort,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where CategoryId = #{categoryid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.ProductCategory">
+    update product_category
+    set Name = #{name,jdbcType=VARCHAR},
+      ParentId = #{parentid,jdbcType=INTEGER},
+      Sort = #{sort,jdbcType=SMALLINT},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP}
+    where CategoryId = #{categoryid,jdbcType=INTEGER}
+  </update>
+  <select id="selectAllByParentId" resultMap="BaseResultMap">
+    SELECT CategoryId,Name
+    FROM product_category
+    WHERE ParentId = #{categoryId}
+    ORDER BY Sort
+  </select>
+</mapper>
